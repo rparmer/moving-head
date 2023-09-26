@@ -1,0 +1,12 @@
+[Unit]
+Description=Moving-Head Service
+Wants=network-online.target
+
+[Service]
+Restart=always
+User=pi
+WorkingDirectory=/home/pi/apps/moving-head/
+ExecStart=/usr/bin/python3 /home/pi/apps/moving-head/main.py
+
+[Install]
+WantedBy=multi-user.target
