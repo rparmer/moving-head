@@ -66,8 +66,8 @@ class MovingHead():
             results, frame = self.object_detector.process_frame(frame)
 
             if len(results) > 0:
-                highest_confidence = max(results, key=attrgetter('confidence'))
-                self.handle_detection(highest_confidence)
+                largest_object = max(results, key=attrgetter('area'))
+                self.handle_detection(largest_object)
 
             if self.view == True:
                 self.stream.view(frame)
