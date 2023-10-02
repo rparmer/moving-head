@@ -20,8 +20,6 @@ class ServoController():
 
     def _setup_servo(self):
         self.servo = Servo(self.gpip_pin)
-        self.set_servo_position(1)
-        self.set_servo_position(-1)
         self.reset_to_center()
 
     def _verify_value(self, value):
