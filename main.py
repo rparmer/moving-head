@@ -44,8 +44,7 @@ class MovingHead():
         _, frame_width = detection.frame.shape[:2]
         frame_center = frame_width / 2
         offset = frame_center - detection.x_center
-        # position = self._round_nearest(offset / frame_center, 0.05) * -1 # reverse position since servo is mounted upside down
-        position = (offset / frame_center) * -1 # reverse position since servo is mounted upside down
+        position = self._round_nearest(offset / frame_center, 0.05) * -1 # move in 5 degree increments and reverse position since servo is mounted upside down
         return position
 
     def _round_nearest(self, num, to):
