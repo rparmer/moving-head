@@ -1,9 +1,9 @@
 import logging
-import os
+from gpiozero.pins.pigpio import PiGPIOFactory
 from gpiozero import Servo
 from time import sleep
 
-os.environ['GPIOZERO_PIN_FACTORY'] = 'pigpio'
+# Servo.pin_factory = PiGPIOFactory()
 
 class ServoController():
     def __init__(self, gpip_pin = 17):
@@ -19,7 +19,7 @@ class ServoController():
             self.servo.close()
 
     def _setup_servo(self):
-        self.servo = Servo(self.gpip_pin)
+        self.servo = Servo(pin=self.gpip_pin, pin_factory=PiGPIOFactory())
         self.reset_to_center()
 
     def _verify_value(self, value):
