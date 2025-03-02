@@ -22,7 +22,7 @@ class Detection():
         return f'Detection({self.x1}, {self.y1}, {self.x2}, {self.y2}, {self.x_center}, {self.y_center}, {self.w}, {self.h}, {self.area}, {self.confidence})'
 
 class ObjectDetector():
-    def __init__(self, model_file = 'yolov8n.pt', confidence_threshold = 0.7, verbose = False):
+    def __init__(self, model_file = 'yolo11n.pt', confidence_threshold = 0.7, verbose = False):
         logging.info('Setting up object detector')
         self.confidence_threshold = confidence_threshold
         self.model = YOLO(model_file)

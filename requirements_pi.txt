@@ -1,5 +1,5 @@
-opencv-python-headless==4.10.0.84
+opencv-python-headless==4.11.0.86
 gpiozero==2.0.1
-ultralytics==8.3.4
+ultralytics==8.3.82
 pyyaml==6.0.2
 pigpio==1.78
