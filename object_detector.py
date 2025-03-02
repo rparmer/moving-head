@@ -22,7 +22,7 @@ class Detection():
         return f'Detection({self.x1}, {self.y1}, {self.x2}, {self.y2}, {self.x_center}, {self.y_center}, {self.w}, {self.h}, {self.area}, {self.confidence})'
 
 class ObjectDetector():
-    def __init__(self, model_file = 'yolo11n.pt', confidence_threshold = 0.7, verbose = False):
+    def __init__(self, model_file = 'yolo11n.pt', confidence_threshold = 0.25, verbose = False):
         logging.info('Setting up object detector')
         self.confidence_threshold = confidence_threshold
         self.model = YOLO(model_file)
@@ -34,15 +34,10 @@ class ObjectDetector():
     def process_frame(self, frame):
         results = []
         # Class '0' filters to only return 'person'
-        detections = self.model.predict(source=frame, classes=0, verbose=self.verbose)[0]
+        detections = self.model.predict(source=frame, conf=self.confidence_threshold, classes=[0], verbose=self.verbose)[0]
             
         for data in detections.boxes.data.tolist():
-            confidence = float(data[4])
-
-            if confidence < self.confidence_threshold:
-                continue
-
-            x1, y1, x2, y2 = int(data[0]), int(data[1]), int(data[2]), int(data[3])
+            x1, y1, x2, y2, confidence = int(data[0]), int(data[1]), int(data[2]), int(data[3]), float(data[4])
 
             x_center = (x1 + x2) / 2
             y_center = (y1 + y2) / 2

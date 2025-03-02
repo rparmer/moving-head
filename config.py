@@ -20,9 +20,9 @@ class _Stream():
 
 class _ObjectDetector():
     def __init__(self, **kwargs):
-        self.model_file = kwargs.get('model_file', 'models/yolov8n.pt')
+        self.model_file = kwargs.get('model_file', 'models/yolo11n.pt')
         self.verbose = kwargs.get('verbose', False)
-        self.confidence_threshold = kwargs.get('confidence_threshold', 0.7)
+        self.confidence_threshold = kwargs.get('confidence_threshold', 0.4)
 
 class _Servo():
     def __init__(self, **kwargs):
